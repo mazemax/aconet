@@ -1,0 +1,31 @@
+version: '2'
+services:
+  web:
+    build: .
+    ports:
+    - "8080:8080"
+    volumes:
+    - ./acoapp:/usr/src/app
+    - logvolume01:/var/log
+    environment:
+      PORT: 8080
+  web2:
+    build: .
+    ports:
+    - "8081:8081"
+    volumes:
+    - ./acoapp:/usr/src/app
+    - logvolume01:/var/log
+    environment:
+      PORT: 8081
+  web3:
+    build: .
+    ports:
+    - "8082:8082"
+    volumes:
+    - ./acoapp:/usr/src/app
+    - logvolume01:/var/log
+    environment:
+      PORT: 8082
+volumes:
+  logvolume01: {}
