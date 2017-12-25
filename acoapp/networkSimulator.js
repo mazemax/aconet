@@ -1,8 +1,8 @@
-var arp = require('arp-a'),
-    neighbours = [];
+var neighbours = [];
 var net = require('net');
 var address,
     ifaces = require('os').networkInterfaces();
+var nmap = require('libnmap');
 
 module.exports = function networkSimulator(server) {
     setTimeout(function(){
@@ -18,12 +18,24 @@ module.exports = function networkSimulator(server) {
         console.log(address);
 
         // aquire information about neighbors
-        arp.table(function(err, entry) {
-            if (!!err) return console.log('arp: ' + err.message);
-            if (!entry) return;
+        var opts = {
+            ports: '8080-8180',
+            range: [
+                '172.18.0.0-120'
+            ]
+        };
+        nmap.scan(opts, function(err, report) {
+            if (err) throw new Error(err);
 
-            console.log(entry);
-            neighbours.push(entry.ip);
+            var hostArray = [];
+            for (var item in report) {
+                var hostObj = report[item].host;
+                hostArray = hostObj.map(function(host) {
+                    return host.address[0]['item']['addr'];
+                });
+            }
+
+            neighbours = hostArray.filter(e => e !== address);
             console.log(neighbours);
         });
 
