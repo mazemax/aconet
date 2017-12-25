@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start2": "node ./bin/www",
-    "start": "nodemon ./bin/www"
+    "start": "nodemon app.js"
   },
   "dependencies": {
     "arp-a": "^0.5.2",
