@@ -9,6 +9,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var debug = require('debug')('acoapp:server');
 var http = require('http');
+var net = require('net');
 var networkSimulator = require('./networkSimulator');
 
 var index = require('./routes/index');
@@ -59,7 +60,11 @@ app.set('port', port);
 /**
  * Create HTTP server.
  */
-var server = http.createServer(app);
+// var server = http.createServer(app);
+var server = net.createServer(function(socket) {
+    socket.write('Echo server\r\n');
+    socket.pipe(socket);
+});
 
 /**
  * Listen on provided port, on all network interfaces.

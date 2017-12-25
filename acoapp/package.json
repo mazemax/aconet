@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "arp-a": "^0.5.2",
+    "bluebird": "^3.5.1",
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
@@ -16,6 +17,7 @@
     "libnmap": "^0.4.9",
     "morgan": "~1.9.0",
     "nodemon": "^1.14.3",
-    "serve-favicon": "~2.4.5"
+    "serve-favicon": "~2.4.5",
+    "wait.for-es6": "^0.1.0"
   }
 }
